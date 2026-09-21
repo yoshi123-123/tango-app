@@ -132,40 +132,44 @@ h1 {
     }
 
     h1 {
-        font-size: 28px;
-        margin-bottom: 15px;
+        font-size: 34px;
+        margin-bottom: 20px;
     }
 
     h3 {
-        font-size: 18px;
+        font-size: 21px;
     }
 
     .word-card {
         width: 100%;
-        padding: 25px 10px;
+        padding: 35px 15px;
         box-sizing: border-box;
-        margin: 20px 0;
+        margin: 25px 0;
     }
 
     h2 {
-        font-size: 38px;
+        font-size: 48px;
     }
 
     button {
-        width: 90%;
-        font-size: 17px;
-        padding: 13px;
-        margin: 6px auto;
+        width: 95%;
+        font-size: 20px;
+        padding: 16px;
+        margin: 8px auto;
         display: block;
     }
 
     input,
     select {
-        width: 90%;
+        width: 95%;
         box-sizing: border-box;
-        font-size: 17px;
-        padding: 12px;
-        margin: 6px auto;
+        font-size: 19px;
+        padding: 14px;
+        margin: 8px auto;
         display: block;
+    }
+
+    #answer {
+        font-size: 30px;
     }
 }
