@@ -1,14 +1,17 @@
 body {
     text-align: center;
-    background: linear-gradient(135deg, #e0f2fe, #e8c63d);
+    background: linear-gradient(135deg, #e0f2fe, #fef3c7);
     min-height: 100vh;
-    margin: 0;
-    padding-top: 30px;
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 500px;
+    box-sizing: border-box;
     font-family: sans-serif;
 }
 
 h1 {
-    font-size: 40px;
+    font-size: 32px;
+    margin-bottom: 20px;
 }
 
 h2 {
@@ -21,155 +24,114 @@ button {
     margin: 6px;
     border: none;
     border-radius: 20px;
-    background-color: #f59e0b;
     color: white;
     font-weight: bold;
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
-input {
-    font-size: 18px;
-    padding: 10px;
-    margin: 5px;
-}
+
 .word-card {
     background-color: white;
-    width: 320px;
-    margin: 30px auto;
-    padding: 35px;
+    width: 100%;
+    padding: 35px 15px;
+    margin: 25px 0;
+    box-sizing: border-box;
     border-radius: 25px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     border: 4px solid #60a5fa;
 }
-@media (max-width: 600px) {
-    .word-card  {
-        width: 80%;
-    }
 
-    h1 {
-        font-size: 32px;
-    }
-
-    h2 {
-        font-size: 40px;
-    }
-
-    button {
-        font-size: 16px;
-        padding: 10px 15px;
-    }
-
-    input {
-        width: 80%;
-        box-sizing: border-box;
-    }
-}
 .answer-button {
-    background-color: #3b82f6 !important;
+    background-color: #3b82f6;
 }
+
 .next-button {
     background-color: #3b82f6;
 }
+
 .delete-button {
     background-color: #ef4444;
 }
+
 .add-button {
-    background-color: #22c55e !important;
+    background-color: #22c55e;
 }
+
 #answer {
-    font-size: 28px;
+    font-size: 30px;
     font-weight: bold;
     color: #f59e0b;
     margin-top: 20px;
 }
-input {
+
+input,
+select {
+    font-size: 18px;
+    padding: 12px;
+    margin: 6px;
     border: 3px solid #fbbf24;
     border-radius: 15px;
-    outline: none;
+    box-sizing: border-box;
     background-color: white;
 }
 
 input:focus {
     border-color: #3b82f6;
+    outline: none;
 }
+
+#levelSelect {
+    border: 3px solid #60a5fa;
+}
+
 .add-title {
     font-size: 24px;
     color: #f59e0b;
     margin-top: 30px;
 }
-#levelSelect {
-    font-size: 18px;
-    padding: 10px 20px;
-    margin: 10px;
-    border: 3px solid #60a5fa;
-    border-radius: 15px;
-    background-color: white;
-    cursor: pointer;
 
-}
-body {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    box-sizing: border-box;
-}
 
-h1 {
-    font-size: 32px;
-    margin-bottom: 10px;
-}
-
-.word-card {
-    width: 100%;
-    box-sizing: border-box;
-    margin: 20px 0;
-}
-/* スマホ用の調整 */
+/* スマホ用 */
 @media (max-width: 600px) {
 
     body {
+        width: 100%;
         padding: 15px;
     }
 
     h1 {
-        font-size: 34px;
-        margin-bottom: 20px;
+        font-size: 36px;
+    }
+
+    h2 {
+        font-size: 52px;
     }
 
     h3 {
-        font-size: 21px;
+        font-size: 22px;
     }
 
     .word-card {
         width: 100%;
-        padding: 35px 15px;
-        box-sizing: border-box;
-        margin: 25px 0;
-    }
-
-    h2 {
-        font-size: 48px;
+        padding: 40px 15px;
     }
 
     button {
-        width: 95%;
-        font-size: 20px;
-        padding: 16px;
-        margin: 8px auto;
-        display: block;
+        width: 100%;
+        font-size: 21px;
+        padding: 17px;
+        margin: 8px 0;
     }
 
     input,
     select {
-        width: 95%;
-        box-sizing: border-box;
-        font-size: 19px;
-        padding: 14px;
-        margin: 8px auto;
-        display: block;
+        width: 100%;
+        font-size: 20px;
+        padding: 15px;
+        margin: 8px 0;
     }
 
     #answer {
-        font-size: 30px;
+        font-size: 32px;
     }
 }
