@@ -222,3 +222,12 @@ input:focus {
     font-weight: bold;
     margin-top: 25px;
 }
+/* 4択ゲームのレベル選択 */
+#quizLevelSelect {
+    border: 3px solid #8b5cf6;
+    font-size: 20px;
+    padding: 12px;
+    margin: 10px;
+    border-radius: 15px;
+    background-color: white;
+}

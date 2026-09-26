@@ -366,8 +366,14 @@ const wordbookScreen = document.getElementById("wordbookScreen");
 const quizQuestion = document.getElementById("quizQuestion");
 const quizAnswers = document.querySelectorAll(".quiz-answer");
 
+const quizLevelSelect =
+    document.getElementById("quizLevelSelect");
+
 let quizCorrectAnswer = "";
 let quizScore = 0;
+
+let quizWords = [];
+let quizIndex = 0;
 
 
 // 4択ゲームを開く
@@ -384,53 +390,127 @@ gameMenuButton.addEventListener("click", function () {
 });
 
 
-// 問題を作る
+// ゲーム開始
 function startQuiz() {
 
+    const selectedLevel =
+        Number(quizLevelSelect.value);
+
     const gameWords = words.filter(function (item) {
-        return item.level === Number(levelSelect.value);
+
+        return item.level === selectedLevel;
+
     });
 
 
-    // 4個未満ならゲームできない
-    if (gameWords.length < 4) {
+    // 10個未満ならゲームできない
+    if (gameWords.length < 10) {
 
-        alert("このレベルには4個以上の単語が必要です！");
+        alert(
+            "このレベルには10個以上の単語が必要です！"
+        );
+
         return;
 
     }
 
 
-    // 正解を決める
+    // 単語をシャッフル
+    let shuffledWords = [...gameWords];
+
+    shuffledWords.sort(function () {
+
+        return Math.random() - 0.5;
+
+    });
+
+
+    // ランダムで10単語を選ぶ
+    quizWords =
+        shuffledWords.slice(0, 10);
+
+
+    // 初期化
+    quizIndex = 0;
+
+    quizScore = 0;
+
+
+    document.getElementById("quizScore").textContent =
+        "⭐ 0ポイント";
+
+
+    showQuizQuestion();
+
+}
+
+
+// レベルを変更したらゲーム開始
+quizLevelSelect.addEventListener("change", function () {
+
+    startQuiz();
+
+});
+
+
+// 問題を表示
+function showQuizQuestion() {
+
     const correctWord =
-        gameWords[Math.floor(Math.random() * gameWords.length)];
+        quizWords[quizIndex];
 
 
-    quizQuestion.textContent = correctWord.word;
-
-    quizCorrectAnswer = correctWord.answer;
-
-
-    // 選択肢を作る
-    let choices = [correctWord.answer];
+    quizQuestion.textContent =
+        correctWord.word;
 
 
+    quizCorrectAnswer =
+        correctWord.answer;
+
+
+    // 正解を入れる
+    let choices = [
+        correctWord.answer
+    ];
+
+
+    // 現在のレベルの単語
+    const gameWords = words.filter(function (item) {
+
+        return item.level ===
+            Number(quizLevelSelect.value);
+
+    });
+
+
+    // 間違いの選択肢を3つ追加
     while (choices.length < 4) {
 
         const randomWord =
-            gameWords[Math.floor(Math.random() * gameWords.length)];
+            gameWords[
+                Math.floor(
+                    Math.random() *
+                    gameWords.length
+                )
+            ];
 
 
-        if (!choices.includes(randomWord.answer)) {
+        if (
+            !choices.includes(
+                randomWord.answer
+            )
+        ) {
 
-            choices.push(randomWord.answer);
+            choices.push(
+                randomWord.answer
+            );
 
         }
 
     }
 
 
-    // シャッフル
+    // 選択肢をシャッフル
     choices.sort(function () {
 
         return Math.random() - 0.5;
@@ -439,12 +519,15 @@ function startQuiz() {
 
 
     // ボタンに表示
-    quizAnswers.forEach(function (button, index) {
+    quizAnswers.forEach(
+        function (button, index) {
 
-        button.textContent =
-            ["① ", "② ", "③ ", "④ "][index] + choices[index];
+            button.textContent =
+                ["① ", "② ", "③ ", "④ "][index]
+                + choices[index];
 
-    });
+        }
+    );
 
 }
 
@@ -452,35 +535,69 @@ function startQuiz() {
 // 答えを選ぶ
 quizAnswers.forEach(function (button) {
 
-    button.addEventListener("click", function () {
+    button.addEventListener(
+        "click",
+        function () {
 
-        const selectedAnswer =
-            button.textContent.substring(2);
+            const selectedAnswer =
+                button.textContent.substring(2);
 
 
-        if (selectedAnswer === quizCorrectAnswer) {
+            // 正解
+            if (
+                selectedAnswer ===
+                quizCorrectAnswer
+            ) {
 
-            quizScore += 10;
+                quizScore += 10;
 
-            alert("🎉 正解！ +10ポイント");
+                alert(
+                    "🎉 正解！ +10ポイント"
+                );
 
-        } else {
+            } else {
 
-            alert(
-                "❌ 不正解！\n正解は「" +
-                quizCorrectAnswer +
-                "」"
-            );
+                alert(
+                    "❌ 不正解！\n正解は「" +
+                    quizCorrectAnswer +
+                    "」"
+                );
+
+            }
+
+
+            // スコア更新
+            document.getElementById(
+                "quizScore"
+            ).textContent =
+                "⭐ " +
+                quizScore +
+                "ポイント";
+
+
+            // 次の問題
+            quizIndex++;
+
+
+            // 10問終了
+            if (quizIndex >= 10) {
+
+                alert(
+                    "🎉 10問終了！\n" +
+                    "スコア：" +
+                    quizScore +
+                    "ポイント"
+                );
+
+                return;
+
+            }
+
+
+            // 次の問題
+            showQuizQuestion();
 
         }
-
-
-        document.getElementById("quizScore").textContent =
-            "⭐ " + quizScore + "ポイント";
-
-
-        startQuiz();
-
-    });
+    );
 
 });
